@@ -1,0 +1,37 @@
+<div class="footer">
+	<div class="footmr">
+		<div class="foot-left">
+			<?php
+				$effected_id="foot-nav";
+				$filetpl="<a href='\$href' target='\$target'>\$label</a>";
+				$foldertpl="<a href='\$href' target='\$target' class='dropdown-toggle' data-toggle='dropdown'>\$label
+				<b class='caret'></b></a>";
+				$dropdown='dropdown';
+				$ul_class="dropdown-menu";
+				$li_class="" ;
+				$style="foot-nav";
+				$showlevel=6;
+				echo
+				sp_get_menu("main",$effected_id,$filetpl,$foldertpl,$ul_class,$li_class,$style,$showlevel,$dropdown);
+			?>
+			<div class="foot-logo">
+				<span><img src="__TMPL__Public/images/logopic2.png" /></span>
+				<h3>Copyright © 2011-2016 www.51zhengxin .com All rights reserved.</h3>
+				<h3>版权所有上海盈蜂征信服务有限公司 - 沪ICP备15046087号-1</h3>
+			</div>
+		</div>
+		<div class="foot-right">
+			<span class="bar-code"><img src="__TMPL__Public/images/logopic3.png" /></span>
+            <span class="contact">
+            <span>QQ:123456789</span>
+            <span>电话:123456789</span>
+            <span>邮箱:123456789</span>
+            </span>
+		</div>
+	</div>
+</div>
+
+<script src="__TMPL__Public/js/headroom.min.js"></script>
+<script type="text/javascript">
+	$(".navbar-fixed-top").headroom();
+</script>

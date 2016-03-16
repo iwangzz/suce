@@ -1,0 +1,34 @@
+<!--  head区域 -->
+<header class="navbar-fixed-top">
+	<div class="container-fluid sc-nav nav-background" id="header">
+		<div class="box">
+			<div class="nav">
+				<a class="logo" href="javascript:void(0)"></a>
+				<?php
+					$effected_id="main-nav";
+					$filetpl="<a href='\$href' target='\$target'>\$label</a>";
+					$foldertpl="<a href='\$href' target='\$target' class='dropdown-toggle' data-toggle='dropdown'>\$label
+					<b class='caret'></b></a>";
+					$dropdown='dropdown';
+					$ul_class="dropdown-menu";
+					$li_class="" ;
+					$style="list-inline";
+					$showlevel=6;
+					echo
+					sp_get_menu("main",$effected_id,$filetpl,$foldertpl,$ul_class,$li_class,$style,$showlevel,$dropdown);
+				?>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script src="__TMPL__Public/js/jquery-1.8.3.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$("#main-nav a").each(function () {
+			if ($(this)[0].href == String(window.location) && $(this).attr('href') != "") {
+				$(this).addClass("current-active");
+			}
+		});
+	});
+</script>
