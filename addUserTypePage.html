@@ -1,0 +1,91 @@
+<style>
+    .mb30 {margin-bottom:30px;}
+    .mt35 {margin-top:35px;}
+    .ml30 {margin-left:30px;}
+</style>
+<script>
+    function onlyNum()
+    {
+        if(!(event.keyCode==46)&&!(event.keyCode==8)&&!(event.keyCode==37)&&!(event.keyCode==39))
+            if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+                event.returnValue=false;
+    }
+
+    function checkval() {
+
+        if ($('#phone').val().replace(/\s+/g,"") == '') {
+            $('#phone').focus();
+            alert('手机号不能为空！');
+            return false;
+        }else if(!/^1[3|4|5|8]\d{9}$/.test($('#phone').val().replace(/\s+/g,""))){
+            $('#phone').focus();
+            alert('手机号码格式输入有误！');
+            return false;
+        }
+
+        if ($('#typeid').val() == '') {
+            alert('请选择用户类型！');
+            $('#typeid').focus();
+            return false;
+        }
+
+        if ($('#description').val().replace(/\s+/g,"") == '') {
+            alert('描述不能为空！');
+            $('#description').focus();
+            return false;
+        }
+
+        return true;
+    }
+     function submitData(){
+        if(checkval()){
+            // form submit
+//            $("#usertypeform").submit();
+
+            //ajax submit
+            var data  = $("#usertypeform").serialize();
+            console.log(data);
+            $.ajax({
+                url: '/index.php/Admin/Sysmessage/addUserType',
+                type: 'POST',
+                data: data,
+                success: function(res){
+                    console.log(res);
+                }
+            })
+        }
+     }
+</script>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="portlet box light-grey">
+
+            <div class="portlet-title">
+                <div class="caption"><i class="icon-globe"></i>添加用户类别</div>
+            </div>
+            <!--<form action='{:U("Sysmessage/addUserType")}' id="form_sample_1" class="form-horizontal" method="POST"-->
+                  <!--enctype="multipart/form-data" onsubmit="return ">-->
+            <form class="form-horizontal" id="usertypeform">
+                <div class="mb30 mt35 ml30"><label for="phone">用户手机号：</label><input type="text" name="phone" id="phone" onkeydown="onlyNum();"></div>
+                <div class="mb30 ml30">
+                    <label for="typeid">用户类型：</label>
+                    <select class="small m-wrap" name="typeid" id="typeid">
+                        <option value="">请选择...</option>
+                        <option value="0">黑名单</option>
+                        <option value="1">竞品用户</option>
+                        <option value="2">运营部用户</option>
+                        <option value="3">市场部用户</option>
+                        <option value="4">研发测试用户</option>
+                    </select>
+                </div>
+                <div  class="mb30 ml30">
+                    <label for="description">简要描述（此次提交原因）：</label>
+                    <textarea id="description" name="description" style="width: 300px; height:60px; resize: none;" ></textarea>
+                </div>
+                <div class="ml30 ml30"><button type="button" class="btn blue" value="1" id="submit" onclick="submitData();"><i class="icon-ok"></i> 提交</button></div>
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>
